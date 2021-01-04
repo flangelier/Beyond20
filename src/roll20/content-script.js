@@ -923,23 +923,23 @@ function handleMessage(request, sender, sendResponse) {
             }
             postChatMessage(message, character_name);
         }
-    } else if (request.action == "roll") {
-        if (request.type == "avatar") {
-            roll_renderer.displayAvatarToDiscord(request);
-            roll = rollAvatarDisplay(request);
-            const character_name = request.whisper !== WhisperType.NO ? "???" : request.character.name;
-            return postChatMessage(roll, character_name);
-        } else if (request.type == "chat-message") {
-            const character_name = request.whisper == WhisperType.HIDE_NAMES ? "???" : request.character.name;
-            return postChatMessage(request.message, character_name);
-        }
-        const isOGL = $("#isOGL").val() === "1";
-        if (settings["roll20-template"] === "default" || !isOGL) {
-            return roll_renderer.handleRollRequest(request);
-        }
-        handleRoll(request);
-    } else if (request.action == "rendered-roll") {
-        handleRenderedRoll(request);
+    // } else if (request.action == "roll") {
+    //     if (request.type == "avatar") {
+    //         roll_renderer.displayAvatarToDiscord(request);
+    //         roll = rollAvatarDisplay(request);
+    //         const character_name = request.whisper !== WhisperType.NO ? "???" : request.character.name;
+    //         return postChatMessage(roll, character_name);
+    //     } else if (request.type == "chat-message") {
+    //         const character_name = request.whisper == WhisperType.HIDE_NAMES ? "???" : request.character.name;
+    //         return postChatMessage(request.message, character_name);
+    //     }
+    //     const isOGL = $("#isOGL").val() === "1";
+    //     if (settings["roll20-template"] === "default" || !isOGL) {
+    //         return roll_renderer.handleRollRequest(request);
+    //     }
+    //     handleRoll(request);
+    // } else if (request.action == "rendered-roll") {
+    //     handleRenderedRoll(request);
     } else if (request.action === "update-combat") {
         sendCustomEvent("CombatTracker", [request.combat]);
     }
